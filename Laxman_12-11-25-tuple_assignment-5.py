@@ -64,7 +64,11 @@
 # Write functions that take a tuple and return the minimum, maximum, and sum of the elements. Print the results for a sample tuple.
 
 # In[3]:
-
+1.### Assignment 1: Creating and Accessing Tuples
+# 
+# Create a tuple with the first 10 positive integers. Print the tuple.
+x=1,2,3,4,5,6,7,8,9,10
+print(x,type(x))
 
 2.#Assignment 2: Accessing Tuple Elements
 #Print the first, middle, and last elements of the tuple created in Assignment 1.
@@ -128,8 +132,14 @@ print("a=",a, "b=",b, "c=",c, "d=",d, "e=",e)
 
 
 # In[6]:
+# ### Assignment 8: Tuple Conversion
+# 
+# Convert a list of the first 5 positive integers to a tuple. Print the tuple.
+x=[1,2,3,4,5]
+t=tuple(x)
+print(t)
 
-
+# In[7]:
 ### Assignment 9: Tuple of Tuples
 
 #Create a tuple containing 3 tuples, each with 3 elements. Print the tuple of tuples.
@@ -204,7 +214,7 @@ x=1,2,3,4,5
 print("minimun_value is:",t[0], "maximum_value is:",t[4],  "Sum of elements:",t[0]+t[1]+t[2]+t[3]+t[4])
 
 
-# In[ ]:
+
 
 
 
