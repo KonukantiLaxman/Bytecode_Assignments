@@ -201,7 +201,7 @@ print(swapped)
 #Qno 13: Default Dictionary
 
 #Create a default dictionary where each key has a default value of an empty list. Add some elements to the lists and print the dictionary.
-keys={"a","b","c","a","b"}
+keys={}
 values=[]
 d1=dict.fromkeys(keys,values)
 print(d1)
@@ -217,6 +217,13 @@ d1
 #Qno 14: Counting with Dictionaries
 
 #Write a function that takes a string and returns a dictionary with the count of each character in the string. Print the dictionary.
+s=input("enter a string")
+print(deffun(s))
+def deffun(s):
+    d=dict()
+    for i in s:
+        d.update({i:s.count(i)})
+    return d
 
 
 # In[114]:
