@@ -170,7 +170,7 @@ print(d1)
 
 #Create a dictionary with the first 5 positive integers as keys and their squares as values. Convert the dictionary to a list of tuples and print it.
 d1={x:x*x for x in range(1,6)}
-d2=list(d1)
+d2=list(d1.items())
 d2
 
 
@@ -191,8 +191,8 @@ d1
 
 #Create a dictionary with the first 5 positive integers as keys and their squares as values. Create a new dictionary with keys and values swapped. Print the new dictionary.
 d1={x:x*x for x in range(1,6)}
-swapped={v:k for k,v in d1.items()}
-print(swapped)
+d2={x*x:x for x in d1.items()}
+print(d2)
 
 
 # In[107]:
