@@ -183,7 +183,14 @@ else:
     print("Given number is not prime")
 
 
-# In[ ]:
+# In[ 25]:
+# Assignment 15: Fibonacci Sequence
+# Write a program that prints the first n Fibonacci numbers, where n is input by the user.
+num=eval(input("enter a number:"))
+x,y=0,1
+for i in range(num):
+    print(x,end=" ")
+    x,y=y,x+y
 
 
 
