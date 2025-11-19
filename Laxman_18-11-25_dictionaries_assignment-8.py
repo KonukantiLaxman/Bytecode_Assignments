@@ -201,14 +201,15 @@ print(d2)
 #Qno 13: Default Dictionary
 
 #Create a default dictionary where each key has a default value of an empty list. Add some elements to the lists and print the dictionary.
-keys={}
+keys={1,2,3}
 values=[]
 d1=dict.fromkeys(keys,values)
 print(d1)
-values.append(10)
-values.append(20)
-values.append(30)
-d1
+d1[1]=10
+d1[2]="hello"
+d1[3]=15
+print(d1)
+
 
 
 # In[121]:
