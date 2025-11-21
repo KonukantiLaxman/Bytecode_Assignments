@@ -123,20 +123,17 @@ units = int(input("Enter units consumed: "))
 ch = input("Enter choice (home/shop/industry): ")
 match ch:
     case "home":
-        rate = 5  
-        print("Category: Domestic")
+        bill=units*5  
+        print("Category: Domestic",bill)
     case "shop":
-        rate = 8       
-        print("Category: Commercial")
+        bill=units*8       
+        print("Category: Commercial",bill)
     case "industry":
-        rate = 10       
-        print("Category: Industrial")
+        bill=units*10       
+        print("Category: Industrial",bill)
     case _:
         print("Invalid connection type!")
-        rate = 0
-
-bill = units * rate
-print(f"Total Bill Amount: ₹{bill}")
+        
 
 
 # In[40]:
@@ -160,10 +157,59 @@ match(ch):
               
     
 
+# 1. Core Billing Logic (Using if-else and if)
+# The most fundamental part is calculating the total bill based on item prices and quantity.
+item_name=input("enter item name:")
+price=eval(input("enter price of item:"))
+qty=eval(input("enter the quantity:"))
+if qty>0:
+    subtotal=price*qty
+    print("subtotal:", subtotal)
+else:
+    print("invalid quantity")
+
+if qty>10:
+    discount=0.5*subtotal
+    print("quantity discount:",discount)
+else:
+    discount=0
+    print("quantity discount:",discount)
+
+loyal=input("is the customer is loyal :(yes/no):")
+
+total=subtotal-discount
+if loyal=="yes":
+    l_discount=0.10*total
+    print("Loyal discount:",l_discount)
+else:
+    l_discount=0
+    print("Loyal discount:",l_discount)
+
+final_bill=total-l_discount
+print("final bill",final_bill)
+    
+    
+    
 
 
 # In[ ]:
 
-
+#4. Tax/VAT Calculation (Using match-case or if-elif-else)
+subtotal=int(input("enter subtotal:"))
+ch=input("enter choice(essential/luxury goods/electronics):")
+match ch:
+    case 'essential':
+        tax=subtotal*0.05
+        total=subtotal+tax
+        print("total price of product is:",total)
+    case 'luxury goods':
+        tax=subtotal*0.20
+        total=subtotal+tax
+        print("total price of product is:",total)
+    case 'electronics':
+        tax=subtotal*0.12
+        total=subtotal+tax
+        print("total price of product is:",total)
+ 
 
 
