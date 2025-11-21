@@ -187,6 +187,37 @@ else:
 
 final_bill=total-l_discount
 print("final bill",final_bill)
+
+#2. Tiered Discounts & Surcharges (Using if-elif-else / match-case)
+# This adds complexity by handling multiple possible states or ranges for the final total.
+total=eval(input("enter total purchase amount:"))
+payment=input("enter payment mode(credit/debit/cash):")
+if total<100:
+    discount=0
+elif total<500:
+    discount=0.05*total
+elif total<1000:
+    dicount=0.10*total
+else:
+    dicount=0.15*total
+fee=0
+cash_discount=0
+match(payment):
+    case 'credit':
+        fee=0.2*total
+        final=total-fee-discount-cash
+        print("final Amount:",final)
+    case 'debit':
+        fee=0.01*total
+        final=total-fee-dicount-cash
+        print("final Amount:",final)
+    case 'cash':
+        cash_discount=5
+        final=total-fee-dicount-cash
+        print("final Amount:",final)
+    case _:
+        print("invalid payment mode:")
+    
     
     
     
