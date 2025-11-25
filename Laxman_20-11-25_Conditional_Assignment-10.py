@@ -219,7 +219,38 @@ match(payment):
         print("invalid payment mode:")
     
     
-    
+##3.Shipping/Delivery Fees:
+custid=input("enter customer id:")
+total=int(input("enter amount:"))
+is_delivery=input("delivery is applicable(yes/no):")
+delivery_fee=0
+if is_delivery=='yes':
+    if total>500:
+        delivery_fee=0
+    else:
+        delivery_fee=50
+else:
+    delivery_fee=0
+    print("no delivery and no fee")
+
+is_premium=input("customer is premium member(yes/no):")
+bonus_points=0
+normal_points=0
+premium_discount=0
+if is_premium=='yes':
+    if total>200:
+        bonus_points=50
+    else:
+        bonus_points=10
+    premium_discount=0.05*total
+    total-=premium_discount
+    print("you have applied premium discount:",premium_discount)
+else:
+ normal_points=5
+ print("you have applied normal points:",normal_points)
+print("total amount:",total)
+        
+     
     
 
 
