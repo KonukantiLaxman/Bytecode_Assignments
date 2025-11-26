@@ -5,10 +5,10 @@
 
 
 # 1. Print your name 5 times using only while loop
-i=1
-while i<=5:
+i=5
+while i>=1:
     print("Laxman")
-    i+=1
+    i-=1
 
 
 # In[1]:
