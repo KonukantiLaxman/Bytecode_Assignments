@@ -6,7 +6,7 @@
 
 print("=== Welcome to HDFC Bank ATM ===")
 balance=50000
-correct_pin="2004"
+correct_pin="2002"
 pin=input("enter Pin:")
 n=0
 while n<2 and pin!=correct_pin:
