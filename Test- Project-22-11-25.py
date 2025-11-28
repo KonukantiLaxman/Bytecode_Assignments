@@ -5,7 +5,7 @@
 
 
 print("=== Welcome to HDFC Bank ATM ===")
-balance=50000
+balance=500000
 correct_pin="2002"
 pin=input("enter Pin:")
 n=0
