@@ -6,8 +6,8 @@
 
 #Assignment 1: Simple if Statement
 #Write a program that asks the user to input a number and prints whether the  number is positive.
-num=eval(input("enter a number:"))
-if num>0:
+n=eval(input("enter a number:"))
+if n>0:
     print("number is positive")
 
 
