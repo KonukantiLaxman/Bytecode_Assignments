@@ -73,11 +73,13 @@ print(a)
 print('==Replacing all the elements in the third column with 1.==')
 a[:,2]=1
 print(a)
+
 # Create a NumPy array of shape (4, 4) with values from 1 to 16. 
 print('==array of shape (4,4) filled with values from 1 and 16 ')
 b=np.array([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]])
 print(b)
-#Replace the diagonal elements with 0.
+
+# Replace the diagonal elements with 0.
 print('==Replacing the diagonal elements with 0.==')
 for i in range(0,4):
     for j in range(0,4):
@@ -95,10 +97,13 @@ print(b)
 import numpy as np
 a=np.array([[1,2,3,4,5,6],[7,8,9,10,11,12],[13,14,15,16,17,18],[19,20,21,22,23,24],[25,26,27,28,29,30],[31,32,33,34,35,36]])
 print(a)
-for i in range(0,6):
-    for j in range(0,6):
-        print(a(3:5))
+a([3:6:2,2:5:2])
+a
 
+# Create a NumPy array of shape (5, 5) with random integers. Extract the elements on the border.
+a=np.random.randint(1,20)
+a([1:5:3,1:5:3])
+a
 
 # In[44]:
 
