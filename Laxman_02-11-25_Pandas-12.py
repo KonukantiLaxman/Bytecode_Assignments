@@ -94,6 +94,10 @@ print(" Extract all rows where column B < 30 and column D > 10\n",df[(df["B"]<30
 print("Replace all values in column C where value < 50 with 0\n",df[df.iloc["C"]<50]==0)
 
 
+#6.	a. Replace multiple rows and multiple columns with a single value (e.g., replace rows [1,2] and columns ['B','D'] with 999).
+df.loc[[1,2],["B","D"]]=999
+df
+
 # In[ ]:
 
 
