@@ -6,16 +6,16 @@
 
 #1.Generate: 0 1 2 3 4 5 6 7 8 9
 #Approach-1
-for val in range(10):
-    print(val)
+for n in range(10):
+    print(n)
 
 #Approach-2
-for val in range(0,10):
-    print(val)
+for n in range(0,10):
+    print(n)
 
 #Approach-3
-for val in range(0,10,1):
-    print(val)
+for n in range(0,10,1):
+    print(n)
 
 
 # In[2]:
