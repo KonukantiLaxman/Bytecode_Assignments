@@ -95,7 +95,8 @@ print("sub-array consisting of the 3rd to 5th rows and 2nd to 4th columns\n",a[2
 # Create a NumPy array of shape (5, 5) with random integers. Extract the elements on the border.
 a=np.random.randint(1,20)
 a([1:5:3,1:5:3])
-a
+print(a)
+
 
 # In[44]:
 
