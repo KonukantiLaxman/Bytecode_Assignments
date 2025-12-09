@@ -15,7 +15,7 @@
 # In[1]:
 
 
-print("Hello, World!")
+print("Hello, Lucky")
 
 
 # **Question 2:** Write a Python program that takes a user input and prints it.
