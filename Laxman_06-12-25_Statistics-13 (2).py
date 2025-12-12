@@ -6,7 +6,7 @@
 
 #1.Find the mean of first 10 odd integers?
 import statistics
-n=list(range(1,10,2))
+n=list(range(1,20,2))
 mean=statistics.mean(n)
 print("Mean:",mean)
 
@@ -16,9 +16,9 @@ print("Mean:",mean)
 
 #2.what is the median of following dataset?
 #data=[32,6,21,10,8,11,12,36,17,16,15,18,40,24,21,23,24,24,29,16,32,31,10,30,35,32,18,39,12,20]
-import statistics
+import statistics as stats
 data=[32,6,21,10,8,11,12,36,17,16,15,18,40,24,21,23,24,24,29,16,32,31,10,30,35,32,18,39,12,20]
-median=statistics.median(data)
+median=stats.median(data)
 print("Median:",median)
 
 
