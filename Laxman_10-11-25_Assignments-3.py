@@ -15,7 +15,7 @@
 # In[1]:
 
 
-print("Hello, Lucky")
+print("Hello, Lucky_Ammu")
 
 
 # **Question 2:** Write a Python program that takes a user input and prints it.
@@ -120,8 +120,8 @@ print(c)
 # In[2]:
 
 
-a=10
-print(a,type(a))
+n=10
+print(n,type(n))
 
 
 # ## 3. Basic Operators (Arithmetic, Comparison, Logical)
@@ -131,12 +131,12 @@ print(a,type(a))
 # In[3]:
 
 
-a=10
-b=5
-print("Addition of a and b is:", a+b)
-print("Subtraction of a and b is:", a-b)
-print("Multiplication of a and b is:",a*b)
-print("Division of a and b is:",a/b)
+x=10
+y=5
+print("Addition of a and b is:", x+y)
+print("Subtraction of a and b is:", x-y)
+print("Multiplication of a and b is:",x*y)
+print("Division of a and b is:",x/y)
 
 
 # **Question 12:** Write a Python program to demonstrate comparison operators: equal to, not equal to, greater than, less than.
