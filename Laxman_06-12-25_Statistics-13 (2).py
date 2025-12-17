@@ -179,7 +179,47 @@ print("standard deviation is:",std)
 
 
 # In[ ]:
+#11.calculate the standard deviation for three different groups of data each representing the number of sales made by employees in a company during week. compare the standard deviation and discuss the differences.
+#sales1:[5,7,10,12,15]
+#sales2:[1,2,3,8,9]
+#sales3:[10,15,20,25,30]
+import numpy as np
+sales1=[5,7,10,12,15]
+sales2=[1,2,3,8,9]
+sales3=[10,15,20,25,30]
+std1=np.std(sales1)
+std2=np.std(sales2)
+std3=np.std(sales3)
+print("standard deviation for group1 is:",std1)
+print("standard deviation for group2 is:",std2)
+print("standard deviation for group3 is:",std3)
 
+# In[ ]:
+#12.calculate the quartiles for the following datasets.
+#data=[10,12,14,16,18,20,22,25,30,35,40,50]
+data=[10,12,14,16,18,20,22,25,30,35,40,50]
+Q1=np.percentile(data,25)
+Q2=np.percentile(data,50)
+Q3=np.percentile(data,75)
+print("Q1 (25th percentile) is:",Q1)
+print("Q2 (median) is:",Q2)
+print("Q3 (75th percentile) is:",Q3)
 
-
+# In[ ]:
+#13.calculate the interquartile range(IQR) for the following dataset and identify the potential outliers using the 1.5*IQR rule
+#data=[10,12,14,16,18,20,22,25,30,35,40,50]
+import numpy as np
+data=[10,12,14,16,18,20,22,25,30,35,40,50,100]
+Q1=np.percentile(data,25)
+Q3=np.percentile(data,75)
+IQR=Q3-Q1
+lower_bound=Q1-1.5*IQR
+upper_bound=Q3+1.5*IQR
+outliers=[x for x in data if x<lower_bound or x>upper_bound]
+print("Q1 (25th percentile) is:",Q1)
+print("Q3 (75th percentile) is:",Q3)
+print("interquartile range(IQR) is:",IQR)
+print("lower bound is:",lower_bound)
+print("upper bound is:",upper_bound)
+print("potential outliers is:",outliers)
 
