@@ -223,3 +223,41 @@ print("lower bound is:",lower_bound)
 print("upper bound is:",upper_bound)
 print("potential outliers is:",outliers)
 
+# In[ ]:
+#14.Given the following dataset representing number of products sold in a store overe a week, calculate the interquartile and identify the outliers.
+# data=[2,4,5,7,10,12,15,18,20,25]
+import numpy as np
+data=[2,4,5,7,10,12,15,18,20,25]
+Q1=np.percentile(data,25)
+Q3=np.percentile(data,75)
+IQR=Q3-Q1
+lower_bound=Q1-1.5*IQR
+upper_bound=Q3*1.5*IQR
+outliers=[x for x in data if x<lower_bound or x>upper_bound]
+print("Q1 (25th percentile) is:",Q1)
+print("Q3 (75th percentile) is:",Q3)
+print("interquartile range(IQR) is:",IQR)
+print("lower bound is:",lower_bound)
+print("upper bound is:",upper_bound)
+print("potential outliers is:",outliers)
+
+# In[ ]:
+#15.You are given the following test scores of a 20 students in a class. Calculate the interquartile and  identify outliers.
+#scores=[34,38,45,45,49,50,53,54,56,58,61,62,65,68,70,72,75,78,80,85]
+#Calculate the first Quartile(Q1), third Quartile(Q3)and IQR
+#identify the potential outliers based on the 1.5*IQR rule.
+import numpy as np
+scores=[34,38,45,45,49,50,53,54,56,58,61,62,65,68,70,72,75,78,80,85]
+Q1=np.percentile(scores,25)
+Q3=np.percentile(scores,75)
+IQR=Q3-Q1
+lower_bound=Q1-1.5*IQR
+upper_bound=Q3+1.5*IQR
+outliers=[x for x in scores if x<lower_bound or x>upper_bound]
+print("Q1 (25th percentile) is:",Q1)
+print("Q3 (75th percentile) is:",Q3)
+print("interquartile range(IQR) is:",IQR)
+print("lower bound is:",lower_bound)
+print("upper bound is:",upper_bound)
+print("potential outliers is:",outliers)
+
