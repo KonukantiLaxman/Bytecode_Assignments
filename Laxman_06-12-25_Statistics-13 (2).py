@@ -261,3 +261,46 @@ print("lower bound is:",lower_bound)
 print("upper bound is:",upper_bound)
 print("potential outliers is:",outliers)
 
+# In[ ]:
+#16. Given the following datasets of product prices, calculate the IQR and plot the boxplot to visualize the distribution and outliers.
+# prices=[15,20,25,30,35,40,45,50,60,100]
+import numpy as np
+import matplotlib.pyplot as plt
+prices=[15,20,25,30,35,40,45,50,60,100]
+Q1=np.percentile(prices,25)
+Q3=np.percentile(prices,75)
+IQR=Q3-Q1
+lower_bound=Q1-1.5*IQR
+upper_bound=Q3+1.5*IQR
+outliers=[x for x in prices if x<lower_bound or x>upper_bound]
+print("Q1 (25th percentile) is:",Q1)
+print("Q3 (75th percentile) is:",Q3)
+print("interquartile range(IQR) is:",IQR)
+print("lower bound is:",lower_bound)
+print("upper bound is:",upper_bound)
+print("potential outliers is:",outliers)
+plt.boxplot(prices)
+plt.title("Boxplot of Product Prices")
+plt.ylabel("Price")
+plt.xlabel("Products")
+plt.show()
+
+# In[ ]:
+#17.Calculate the median for both even and odd- sized datasets.
+#odd=[56,12,89,42,36,23,78,54,67,91,33,15,40,88,63]
+#even=[56,12,89,42,36,23,78,54,67,91,33,15,40,88,63,75]
+import statistics as stats
+odd=[56,12,89,42,36,23,78,54,67,91,33,15,40,88,63]
+even=[56,12,89,42,36,23,78,54,67,91,33,15,40,88,63,75]
+median_odd=stats.median(odd)
+median_even=stats.median(even)
+print("median for odd-sized datasets is:",median_odd)
+print("median for even-sized datasets is:",median_even)
+
+
+# In[ ]:
+#18.Find the standard deviation for [4,8,6,5,3,8,9]
+import numpy as np
+data=[4,8,6,5,3,8,9]
+std=np.std(data)
+print("standard deviation for [4,8,6,5,3,8,9] is:",std)
