@@ -304,3 +304,5 @@ import numpy as np
 data=[4,8,6,5,3,8,9]
 std=np.std(data)
 print("standard deviation for [4,8,6,5,3,8,9] is:",std)
+
+# In[ ]:
