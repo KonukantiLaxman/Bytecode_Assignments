@@ -306,3 +306,28 @@ std=np.std(data)
 print("standard deviation for [4,8,6,5,3,8,9] is:",std)
 
 # In[ ]:
+#19.Compare the variability in two 
+# data_1=[12,14,16,18,20,22,24,26,28,30,32,34,36,38,40]
+# data_2=[5,10,20,40,80,160,320,640,1280,2560,5120,10240,20480,40960,81920] by calculating their standard deviations. 
+import numpy as np
+data_1=[12,14,16,18,20,22,24,26,28,30,32,34,36,38,40]
+data_2=[5,10,20,40,80,160,320,640,1280,2560,5120,10240,20480,40960,81920]
+std_data1=np.std(data_1)
+std_data2=np.std(data_2)
+variability=std_data2-std_data1
+print("standard deviation for data_1 is:",std_data1)
+print("standard deviation for data_2 is:",std_data2)
+print("Variability of two datas is:",variability)
+
+# In[ ]:
+#20.A boxplot shows an IQR of 20 with Q1=30 and Q3=50. Identify the Lower and Upper bounds for outliers.
+import numpy as np
+import matplotlib.pyplot as plt
+Q1=30
+Q3=50
+IQR=20
+IQR=Q3-Q1
+lower_bound=Q1-1.5*IQR
+upper_bound=Q3+1.5*IQR
+print("Lower_bounds for outliers is:",lower_bound)
+print("Upper_bound for outliers is:",upper_bound)
