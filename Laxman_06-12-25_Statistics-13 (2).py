@@ -329,5 +329,8 @@ IQR=20
 IQR=Q3-Q1
 lower_bound=Q1-1.5*IQR
 upper_bound=Q3+1.5*IQR
+print("Q1 is:",Q1)
+print("Q3 is:",Q3)
+print("IQR is:",IQR)
 print("Lower_bounds for outliers is:",lower_bound)
 print("Upper_bound for outliers is:",upper_bound)
