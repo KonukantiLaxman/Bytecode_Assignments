@@ -27,9 +27,9 @@ print("Median:",median)
 
 #3.identify the mode of following dataset?
 #data=[21,19,62,21,66,28,66,48,79,59,28,62,63,63,48,66,59,66,94,79,19,94]
-import statistics
+import statistics as stats 
 data=[21,19,62,21,66,28,66,48,79,59,28,62,63,63,48,66,59,66,94,79,19,94]
-mode=statistics.mode(data)
+mode=stats.mode(data)
 print("Mode:",mode)
 
 
