@@ -6,7 +6,7 @@
 
 #1.Find the mean of first 10 odd integers?
 import statistics
-n=list(range(1,20,2))
+n=list(range(1,10,2))
 mean=statistics.mean(n)
 print("Mean:",mean)
 
@@ -221,7 +221,7 @@ print("Q3 (75th percentile) is:",Q3)
 print("interquartile range(IQR) is:",IQR)
 print("lower bound is:",lower_bound)
 print("upper bound is:",upper_bound)
-print("potential outliers is:",outliers)
+print("potential outliers  of data is:",outliers)
 
 # In[ ]:
 #14.Given the following dataset representing number of products sold in a store overe a week, calculate the interquartile and identify the outliers.
