@@ -5,9 +5,9 @@
 
 
 #1.Find the mean of first 10 odd integers?
-import statistics
+import statistics as stats
 n=list(range(1,10,2))
-mean=statistics.mean(n)
+mean=stats.mean(n)
 print("Mean:",mean)
 
 
