@@ -5,7 +5,7 @@
 
 
 #Q1. Write a Python program to print the number 10.
-a=10
+a=50
 print(a)
 
 
@@ -21,7 +21,7 @@ print(a, b, c)
 
 
 #3. Store your name in a variable and print it.
-a="Laxman"
+a="Lucky"
 print(a)
 
 
