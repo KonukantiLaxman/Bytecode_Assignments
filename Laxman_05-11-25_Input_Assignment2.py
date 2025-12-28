@@ -6,10 +6,10 @@
 
 #1.Take two numbers as input and print their sum.
 
-num1=int(input("enter first number:"))
-num2=int(input("enter second number:"))
-num3=num1+num2
-print("sum of two values is:",num3)
+n1=int(input("enter first number:"))
+n2=int(input("enter second number:"))
+n3=n1+n2
+print("sum of two values is:",n3)
 
 
 # In[4]:
