@@ -1,0 +1,573 @@
+SQL> -->Scenario 1: Employee Management System
+SQL> -->Table: employees(emp_id, emp_name, department, salary, status)
+SQL> desc Employees;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                             NUMBER(3)
+ EMP_NAME                                           VARCHAR2(20)
+ DEPARTMENT                                         VARCHAR2(20)
+ SALARY                                             NUMBER(5)
+ STATUS                                             VARCHAR2(20)
+
+SQL> select * from Employees;
+
+    EMP_ID EMP_NAME             DEPARTMENT               SALARY                 
+---------- -------------------- -------------------- ----------                 
+STATUS                                                                          
+--------------------                                                            
+         1 Alen                 IT                        33000                 
+ACTIVE                                                                          
+                                                                                
+         2 BOb                  Non_IT                    27500                 
+INACTIVE                                                                        
+                                                                                
+         3 David                IT                        40000                 
+ACTIVE                                                                          
+                                                                                
+
+    EMP_ID EMP_NAME             DEPARTMENT               SALARY                 
+---------- -------------------- -------------------- ----------                 
+STATUS                                                                          
+--------------------                                                            
+         4 James                Non_IT                    35200                 
+INACTIVE                                                                        
+                                                                                
+         5 Smith                IT                        45000                 
+ACTIVE                                                                          
+                                                                                
+
+SQL> set linesize200;
+SQL> select * from Employees;
+
+    EMP_ID EMP_NAME             DEPARTMENT               SALARY STATUS                                                                                                                                  
+---------- -------------------- -------------------- ---------- --------------------                                                                                                                    
+         1 Alen                 IT                        33000 ACTIVE                                                                                                                                  
+         2 BOb                  Non_IT                    27500 INACTIVE                                                                                                                                
+         3 David                IT                        40000 ACTIVE                                                                                                                                  
+         4 James                Non_IT                    35200 INACTIVE                                                                                                                                
+         5 Smith                IT                        45000 ACTIVE                                                                                                                                  
+
+SQL> -->2. Display employees working in IT department.
+SQL> select * from Employees where department='IT';
+
+    EMP_ID EMP_NAME             DEPARTMENT               SALARY STATUS                                                                                                                                  
+---------- -------------------- -------------------- ---------- --------------------                                                                                                                    
+         1 Alen                 IT                        33000 ACTIVE                                                                                                                                  
+         3 David                IT                        40000 ACTIVE                                                                                                                                  
+         5 Smith                IT                        45000 ACTIVE                                                                                                                                  
+
+SQL> -->3. Increase salary by 10% for employees earning below 40000.
+SQL> select * from Employees set salary=salary+salary/100*10 where salary<40000;
+select * from Employees set salary=salary+salary/100*10 where salary<40000
+                        *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> update Employees set salary=salary+salary/100*10 where salary<40000;
+
+3 rows updated.
+
+SQL> select * from Employees;
+
+    EMP_ID EMP_NAME             DEPARTMENT               SALARY STATUS                                                                                                                                  
+---------- -------------------- -------------------- ---------- --------------------                                                                                                                    
+         1 Alen                 IT                        36300 ACTIVE                                                                                                                                  
+         2 BOb                  Non_IT                    30250 INACTIVE                                                                                                                                
+         3 David                IT                        40000 ACTIVE                                                                                                                                  
+         4 James                Non_IT                    38720 INACTIVE                                                                                                                                
+         5 Smith                IT                        45000 ACTIVE                                                                                                                                  
+
+SQL> savepoint s1;
+
+Savepoint created.
+
+SQL> 4. Create a SAVEPOINT after salary update.
+SP2-0734: unknown command beginning "4. Create ..." - rest of line ignored.
+SQL> -->4. Create a SAVEPOINT after salary update.
+SQL> update Employees set salary=salary+salary/100*10 where salary<40000;
+
+3 rows updated.
+
+SQL> savepoint s1;
+
+Savepoint created.
+
+SQL> -->5. Delete employees whose status is INACTIVE.
+SQL> delete Employees where status='INACTIVE';
+
+2 rows deleted.
+
+SQL> -->6. Rollback only delete operation.
+SQL> rollback to s1;
+
+Rollback complete.
+
+SQL> -->7. Commit final changes.
+SQL> commit;
+
+Commit complete.
+
+SQL> -->Scenario 2: Bank Transaction System
+SQL> Table: bank_accounts(account_no, customer_name, balance, status)
+SP2-0734: unknown command beginning "Table: ban..." - rest of line ignored.
+SQL> desc bank_accounts;
+ERROR:
+ORA-04043: object bank_accounts does not exist 
+
+
+SQL> create table bank_accounts(
+  2  account_no njumber(15),
+  3  customer_name
+  4  
+SQL> create table bank_accounts(
+  2  account_no number(15),
+  3  customer_name varchar2(20),
+  4  balance number(6),
+  5  status varchar2(20));
+
+Table created.
+
+SQL> desc bank_accounts;
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ ACCOUNT_NO                                                                                                                 NUMBER(15)
+ CUSTOMER_NAME                                                                                                              VARCHAR2(20)
+ BALANCE                                                                                                                    NUMBER(6)
+ STATUS                                                                                                                     VARCHAR2(20)
+
+SQL> -->1. Insert 3 bank accounts.
+SQL> insert into bank_accounts(
+  2  account_no, customer_name, balance, status)
+  3  values(&account_no,'&customer_name',&balance, '&status');
+Enter value for account_no: 123456
+Enter value for customer_name: Raju
+Enter value for balance: 25000
+Enter value for status: Active
+old   3: values(&account_no,'&customer_name',&balance, '&status')
+new   3: values(123456,'Raju',25000, 'Active')
+
+1 row created.
+
+SQL> /
+Enter value for account_no: 678910
+Enter value for customer_name: Rani
+Enter value for balance: 30000
+Enter value for status: Active
+old   3: values(&account_no,'&customer_name',&balance, '&status')
+new   3: values(678910,'Rani',30000, 'Active')
+
+1 row created.
+
+SQL> /
+Enter value for account_no: 11121314
+Enter value for customer_name: Sravani
+Enter value for balance: 50000
+Enter value for status: Active
+old   3: values(&account_no,'&customer_name',&balance, '&status')
+new   3: values(11121314,'Sravani',50000, 'Active')
+
+1 row created.
+
+SQL> /
+Enter value for account_no: 
+Enter value for customer_name: Ammu
+Enter value for balance: 19000
+Enter value for status: InActive
+old   3: values(&account_no,'&customer_name',&balance, '&status')
+new   3: values(,'Ammu',19000, 'InActive')
+values(,'Ammu',19000, 'InActive')
+       *
+ERROR at line 3:
+ORA-00936: missing expression 
+
+
+SQL> select * from bank_status;
+select * from bank_status
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> select * from bank_account;
+select * from bank_account
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> select * from  bank_accounts;
+
+ACCOUNT_NO CUSTOMER_NAME           BALANCE STATUS                                                                                                                                                       
+---------- -------------------- ---------- --------------------                                                                                                                                         
+    123456 Raju                      25000 Active                                                                                                                                                       
+    678910 Rani                      30000 Active                                                                                                                                                       
+  11121314 Sravani                   50000 Active                                                                                                                                                       
+
+SQL> insert into bank_accounts(
+  2  account_no, customer_name, balance, status)
+  3  values(&account_no,'&customer_name',&balance, '&status');
+Enter value for account_no: 151617
+Enter value for customer_name: Laxman
+Enter value for balance: 35000
+Enter value for status: INACTIVE
+old   3: values(&account_no,'&customer_name',&balance, '&status')
+new   3: values(151617,'Laxman',35000, 'INACTIVE')
+
+1 row created.
+
+SQL> select * from  bank_accounts;
+
+ACCOUNT_NO CUSTOMER_NAME           BALANCE STATUS                                                                                                                                                       
+---------- -------------------- ---------- --------------------                                                                                                                                         
+    123456 Raju                      25000 Active                                                                                                                                                       
+    678910 Rani                      30000 Active                                                                                                                                                       
+  11121314 Sravani                   50000 Active                                                                                                                                                       
+    151617 Laxman                    35000 INACTIVE                                                                                                                                                     
+
+SQL> -->2. Transfer 10000 from one account to another.
+SQL> update bank_accounts set balance=balance-10000 where account_no=11121314;
+
+1 row updated.
+
+SQL> savepoint s2;
+
+Savepoint created.
+
+SQL> -->. Create SAVEPOINT after debit.
+SQL> savepoint s2;
+
+Savepoint created.
+
+SQL> savepoint s2;
+
+Savepoint created.
+
+SQL> update bank_accounts set balance=balance+10000 where account_no=151617;
+
+1 row updated.
+
+SQL> select * from  bank_accounts;
+
+ACCOUNT_NO CUSTOMER_NAME           BALANCE STATUS                                                                                                                                                       
+---------- -------------------- ---------- --------------------                                                                                                                                         
+    123456 Raju                      25000 Active                                                                                                                                                       
+    678910 Rani                      30000 Active                                                                                                                                                       
+  11121314 Sravani                   40000 Active                                                                                                                                                       
+    151617 Laxman                    45000 INACTIVE                                                                                                                                                     
+
+SQL> ROLLBACK TO after_debit;
+ROLLBACK TO after_debit
+*
+ERROR at line 1:
+ORA-01086: savepoint 'AFTER_DEBIT' never established in this session or is invalid 
+
+
+SQL> ROLLBACK TO s2;
+
+Rollback complete.
+
+SQL> -->4. Rollback if credit fails.
+SQL> ROLLBACK TO s2;
+
+Rollback complete.
+
+SQL> -->5. Display final balances.
+SQL> select * from  bank_accounts;
+
+ACCOUNT_NO CUSTOMER_NAME           BALANCE STATUS                                                                                                                                                       
+---------- -------------------- ---------- --------------------                                                                                                                                         
+    123456 Raju                      25000 Active                                                                                                                                                       
+    678910 Rani                      30000 Active                                                                                                                                                       
+  11121314 Sravani                   40000 Active                                                                                                                                                       
+    151617 Laxman                    35000 INACTIVE                                                                                                                                                     
+
+SQL> -->5. Display final balances.
+SQL> select account_no, customer_name, balance where account_no in(11121314,151617);
+select account_no, customer_name, balance where account_no in(11121314,151617)
+                                          *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select account_no, customer_name, balance from bank_accounts where account_no in(11121314,151617);
+
+ACCOUNT_NO CUSTOMER_NAME           BALANCE                                                                                                                                                              
+---------- -------------------- ----------                                                                                                                                                              
+  11121314 Sravani                   40000                                                                                                                                                              
+    151617 Laxman                    35000                                                                                                                                                              
+
+SQL> -->6. Commit transaction.
+SQL> commit;
+
+Commit complete.
+
+SQL> --->Scenario 3: Online Order Processing
+SQL> -->Table: orders(order_id, customer_name, total_amount, order_status)
+SQL> create table orders
+  2  order_id number(5),
+  3  customer_name varchar2(20),
+  4  total_amount number(6,2),
+  5  order_status varchar2(20));
+order_id number(5),
+*
+ERROR at line 2:
+ORA-00922: missing or invalid option 
+
+
+SQL> create table orders(
+  2  order_id number(5),
+  3  customer_name varchar2(20),
+  4  total_amount number(6,2),
+  5  order_status varchar2(20));
+
+Table created.
+
+SQL> desc orders;
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ ORDER_ID                                                                                                                   NUMBER(5)
+ CUSTOMER_NAME                                                                                                              VARCHAR2(20)
+ TOTAL_AMOUNT                                                                                                               NUMBER(6,2)
+ ORDER_STATUS                                                                                                               VARCHAR2(20)
+
+SQL> -->1. Insert 4 orders.
+SQL> insert into orders(
+  2  order_id, customer_name, total_amount, order_status)
+  3  values(&order_id, '&customer_name', &total_amount, '&order_status');
+Enter value for order_id: 1
+Enter value for customer_name: anitha
+Enter value for total_amount: 15000
+Enter value for order_status: confirmed
+old   3: values(&order_id, '&customer_name', &total_amount, '&order_status')
+new   3: values(1, 'anitha', 15000, 'confirmed')
+values(1, 'anitha', 15000, 'confirmed')
+                    *
+ERROR at line 3:
+ORA-01438: value larger than specified precision allowed for this column 
+
+
+SQL> /
+Enter value for order_id: 2
+Enter value for customer_name: sai
+Enter value for total_amount: 10000
+Enter value for order_status: pending
+old   3: values(&order_id, '&customer_name', &total_amount, '&order_status')
+new   3: values(2, 'sai', 10000, 'pending')
+values(2, 'sai', 10000, 'pending')
+                 *
+ERROR at line 3:
+ORA-01438: value larger than specified precision allowed for this column 
+
+
+SQL> insert into orders(
+  2  order_id, customer_name, total_amount, order_status)
+  3  values(&order_id, '&customer_name', &total_amount, '&order_status');
+Enter value for order_id: 1
+Enter value for customer_name: anitha
+Enter value for total_amount: 1545.6
+Enter value for order_status: confirmed
+old   3: values(&order_id, '&customer_name', &total_amount, '&order_status')
+new   3: values(1, 'anitha', 1545.6, 'confirmed')
+
+1 row created.
+
+SQL> /
+Enter value for order_id: 2
+Enter value for customer_name: sai
+Enter value for total_amount: 1000
+Enter value for order_status: pending
+old   3: values(&order_id, '&customer_name', &total_amount, '&order_status')
+new   3: values(2, 'sai', 1000, 'pending')
+
+1 row created.
+
+SQL> /
+Enter value for order_id: 3
+Enter value for customer_name: neha
+Enter value for total_amount: 5000
+Enter value for order_status: pending
+old   3: values(&order_id, '&customer_name', &total_amount, '&order_status')
+new   3: values(3, 'neha', 5000, 'pending')
+
+1 row created.
+
+SQL> /
+Enter value for order_id: 4
+Enter value for customer_name: manish
+Enter value for total_amount: 4999
+Enter value for order_status: pending
+old   3: values(&order_id, '&customer_name', &total_amount, '&order_status')
+new   3: values(4, 'manish', 4999, 'pending')
+
+1 row created.
+
+SQL> select * from orders;
+
+  ORDER_ID CUSTOMER_NAME        TOTAL_AMOUNT ORDER_STATUS                                                                                                                                               
+---------- -------------------- ------------ --------------------                                                                                                                                       
+         1 anitha                     1545.6 confirmed                                                                                                                                                  
+         2 sai                          1000 pending                                                                                                                                                    
+         3 neha                         5000 pending                                                                                                                                                    
+         4 manish                       4999 pending                                                                                                                                                    
+
+SQL> select * from orders where order_status='pending';
+
+  ORDER_ID CUSTOMER_NAME        TOTAL_AMOUNT ORDER_STATUS                                                                                                                                               
+---------- -------------------- ------------ --------------------                                                                                                                                       
+         2 sai                          1000 pending                                                                                                                                                    
+         3 neha                         5000 pending                                                                                                                                                    
+         4 manish                       4999 pending                                                                                                                                                    
+
+SQL> update order_status='confirmed' where order_satus='pending'
+  2  ;
+update order_status='confirmed' where order_satus='pending'
+                   *
+ERROR at line 1:
+ORA-00971: missing SET keyword 
+
+
+SQL> -->3. Update order status to CONFIRMED.
+SQL> update set order_status='confirmed' where order_satus='pending';
+update set order_status='confirmed' where order_satus='pending'
+       *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> update orders set order_status='confirmed' where order_satus='pending';
+update orders set order_status='confirmed' where order_satus='pending'
+                                                 *
+ERROR at line 1:
+ORA-00904: "ORDER_SATUS": invalid identifier 
+
+
+SQL> update orders set order_status='confirmed' where order_status='pending';
+
+3 rows updated.
+
+SQL> -->4. Create SAVEPOINT.
+SQL> savepoint s4
+  2  ;
+
+Savepoint created.
+
+SQL> -->5. Cancel orders above 50000.
+SQL> update orders set order_status='cancelled' where total_amount>3000;
+
+2 rows updated.
+
+SQL> -->ROLLBACK TO after_confirmation;
+SQL> rollback to s4;
+
+Rollback complete.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> -->Scenario 4: Student Enrollment System
+SQL> -->Table: students(student_id, name, course, fees_paid)
+SQL> create table students(
+  2  student_id number(4),
+  3  name varchar2(20),
+  4  course varchar2(20),
+  5  fees_paid number(6));
+
+Table created.
+
+SQL> insert into students
+  2  (student_id, name, course, fees_paid)
+  3  values(&student_id, '&name','&course', &fees_paid);
+Enter value for student_id: 101
+Enter value for name: Amit
+Enter value for course: java
+Enter value for fees_paid: 22000
+old   3: values(&student_id, '&name','&course', &fees_paid)
+new   3: values(101, 'Amit','java', 22000)
+
+1 row created.
+
+SQL> /
+Enter value for student_id: 102
+Enter value for name: rahul
+Enter value for course: python 
+Enter value for fees_paid: 25000
+old   3: values(&student_id, '&name','&course', &fees_paid)
+new   3: values(102, 'rahul','python ', 25000)
+
+1 row created.
+
+SQL> /
+Enter value for student_id: 103
+Enter value for name: priya
+Enter value for course: data
+Enter value for fees_paid: 28000
+old   3: values(&student_id, '&name','&course', &fees_paid)
+new   3: values(103, 'priya','data', 28000)
+
+1 row created.
+
+SQL> /
+Enter value for student_id: 104
+Enter value for name: kiran
+Enter value for course: java
+Enter value for fees_paid: 24000
+old   3: values(&student_id, '&name','&course', &fees_paid)
+new   3: values(104, 'kiran','java', 24000)
+
+1 row created.
+
+SQL> /
+Enter value for student_id: 104
+Enter value for name: Rucha
+Enter value for course: python
+Enter value for fees_paid: 23000
+old   3: values(&student_id, '&name','&course', &fees_paid)
+new   3: values(104, 'Rucha','python', 23000)
+
+1 row created.
+
+SQL> /
+Enter value for student_id: 105
+Enter value for name: Rucha
+Enter value for course: python
+Enter value for fees_paid: 23000
+old   3: values(&student_id, '&name','&course', &fees_paid)
+new   3: values(105, 'Rucha','python', 23000)
+
+1 row created.
+
+SQL> /
+Enter value for student_id: 106
+Enter value for name: Shirish
+Enter value for course: data
+Enter value for fees_paid: 30000
+old   3: values(&student_id, '&name','&course', &fees_paid)
+new   3: values(106, 'Shirish','data', 30000)
+
+1 row created.
+
+SQL> select * from students;
+
+STUDENT_ID NAME                 COURSE                FEES_PAID                                                                                                                                         
+---------- -------------------- -------------------- ----------                                                                                                                                         
+       101 Amit                 java                      22000                                                                                                                                         
+       102 rahul                python                    25000                                                                                                                                         
+       103 priya                data                      28000                                                                                                                                         
+       104 kiran                java                      24000                                                                                                                                         
+       104 Rucha                python                    23000                                                                                                                                         
+       105 Rucha                python                    23000                                                                                                                                         
+       106 Shirish              data                      30000                                                                                                                                         
+
+7 rows selected.
+
+SQL> -->2. Select students with fees_paid > 30000.
+SQL> select * from students where fees_paid>25000;
+
+STUDENT_ID NAME                 COURSE                FEES_PAID                                                                                                                                         
+---------- -------------------- -------------------- ----------                                                                                                                                         
+       103 priya                data                      28000                                                                                                                                         
+       106 Shirish              data                      30000                                                                                                                                         
+
+SQL> 
