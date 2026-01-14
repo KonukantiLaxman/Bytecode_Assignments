@@ -570,4 +570,271 @@ STUDENT_ID NAME                 COURSE                FEES_PAID
        103 priya                data                      28000                                                                                                                                         
        106 Shirish              data                      30000                                                                                                                                         
 
-SQL> 
+SQL> cted.
+SQL>  desc students;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENT_ID                                         NUMBER(4)
+ NAME                                               VARCHAR2(20)
+ COURSE                                             VARCHAR2(20)
+ FEES_PAID                                          NUMBER(6)
+
+SQL> select * from students;
+
+STUDENT_ID NAME                 COURSE                FEES_PAID
+---------- -------------------- -------------------- ----------
+       101 Amit                 java                      32000
+       102 rahul                python                    25000
+       103 priya                data                      28000
+       104 kiran                java                      34000
+       104 Rucha                python                    23000
+       105 Rucha                python                    23000
+       106 Shirish              data                      30000
+
+7 rows selected.
+
+SQL> -->2. Select students with fees_paid > 30000
+SQL> select * from students where fees_paid>3000;
+
+STUDENT_ID NAME                 COURSE                FEES_PAID
+---------- -------------------- -------------------- ----------
+       101 Amit                 java                      32000
+       102 rahul                python                    25000
+       103 priya                data                      28000
+       104 kiran                java                      34000
+       104 Rucha                python                    23000
+       105 Rucha                python                    23000
+       106 Shirish              data                      30000
+
+7 rows selected.
+
+SQL> select * from students where fees_paid>30000;
+
+STUDENT_ID NAME                 COURSE                FEES_PAID
+---------- -------------------- -------------------- ----------
+       101 Amit                 java                      32000
+       104 kiran                java                      34000
+
+SQL> -->3. Update fees for Java students.
+SQL> update students set fees_paid=fees_paid+5000 where course='java';
+
+2 rows updated.
+
+SQL> savepoint java_fees_updated;
+
+Savepoint created.
+
+SQL> -->4. Create SAVEPOINT JAVA_FEES_UPDATED.
+SQL> savepoint java_fees_updated;
+
+Savepoint created.
+
+SQL> -->5. Delete students with fees < 20000.
+SQL> delete students where fees_paid<20000;
+
+
+0 rows deleted.
+
+SQL> delete students where fees_paid<23000;
+
+0 rows deleted.
+
+SQL> delete students where fees_paid<25000;
+
+2 rows deleted.
+
+SQL> -->6. Rollback to savepoint.
+SQL> rollback to java_fees_updated;
+
+Rollback complete.
+
+SQL> -->7. Commit changes.
+SQL> commit;
+
+Commit complete.
+
+SQL> -->Scenario 5: Inventory Management
+SQL> Table: products(product_id, product_name, quantity, price)
+SP2-0734: unknown command beginning "Table: pro..." - rest of line ignored.
+SQL> desc products;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ PRODUCT_ID                                         NUMBER(5)
+ PRODUCT_NAME                                       VARCHAR2(20)
+ QUANTITY                                           NUMBER(3)
+ PRICE                                              NUMBER(5)
+
+SQL> select * from products;
+
+no rows selected
+
+
+SQL> -->1. Insert 5 products.
+SQL> insert into products
+  2  (product_id,product_name,quantity,price)
+  3  values(&product_id, '&product_name',&quantity,&price);
+Enter value for product_id: 1001
+Enter value for product_name: Laptop
+Enter value for quantity: 5
+Enter value for price: 52000
+old   3: values(&product_id, '&product_name',&quantity,&price)
+new   3: values(1001, 'Laptop',5,52000)
+
+1 row created.
+
+SQL> /
+Enter value for product_id: 10002
+Enter value for product_name: Mobile
+Enter value for quantity: 4
+Enter value for price: 35000
+old   3: values(&product_id, '&product_name',&quantity,&price)
+new   3: values(10002, 'Mobile',4,35000)
+
+1 row created.
+
+SQL> /
+Enter value for product_id: 1003
+Enter value for product_name: Tablet
+Enter value for quantity: 3
+Enter value for price: 40000
+old   3: values(&product_id, '&product_name',&quantity,&price)
+new   3: values(1003, 'Tablet',3,40000)
+
+1 row created.
+
+
+SQL> /
+Enter value for product_id: 1004
+Enter value for product_name: TV
+Enter value for quantity: 2
+Enter value for price: 60000
+old   3: values(&product_id, '&product_name',&quantity,&price)
+new   3: values(1004, 'TV',2,60000)
+
+1 row created.
+
+SQL> /
+Enter value for product_id: 1005
+Enter value for product_name: Fridge
+Enter value for quantity: 3
+Enter value for price: 48000
+old   3: values(&product_id, '&product_name',&quantity,&price)
+new   3: values(1005, 'Fridge',3,48000)
+
+1 row created.
+
+SQL> select * from products;
+
+PRODUCT_ID PRODUCT_NAME           QUANTITY      PRICE
+---------- -------------------- ---------- ----------
+      1001 Laptop                        5      52000
+     10002 Mobile                        4      35000
+      1003 Tablet                        3      40000
+      1004 TV                            2      60000
+      1005 Fridge                        3      48000
+
+SQL> update products set product_id=1002 where product_id=10002;
+
+1 row updated.
+
+
+SQL> select * from products;
+
+PRODUCT_ID PRODUCT_NAME           QUANTITY      PRICE
+---------- -------------------- ---------- ----------
+      1001 Laptop                        5      52000
+      1002 Mobile                        4      35000
+      1003 Tablet                        3      40000
+      1004 TV                            2      60000
+      1005 Fridge                        3      48000
+
+SQL> -->2. Select products with low stock.
+SQL> select products where quantity<3;
+select products where quantity<3
+                *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select* from  products where quantity<3;
+
+PRODUCT_ID PRODUCT_NAME           QUANTITY      PRICE
+---------- -------------------- ---------- ----------
+      1004 TV                            2      60000
+
+SQL> select* from  products where quantity<=3;
+
+PRODUCT_ID PRODUCT_NAME           QUANTITY      PRICE
+---------- -------------------- ---------- ----------
+      1003 Tablet                        3      40000
+      1004 TV                            2      60000
+      1005 Fridge                        3      48000
+
+SQL> update products set price=price*1.15 where quantity<=3;
+
+3 rows updated.
+
+
+SQL> -->4. Create SAVEPOINT PRICE_UPDATED.
+SQL> savepoint price_updated;
+
+Savepoint created.
+
+SQL> -->5. Delete products with zero quantity.
+SQL> delete products where quantity=0;
+
+0 rows deleted.
+
+SQL> delete products where quantity=2;
+
+1 row deleted.
+
+SQL> rollback delete;
+rollback delete
+         *
+ERROR at line 1:
+ORA-02181: invalid option to ROLLBACK WORK
+
+
+SQL> savepoint deleted;
+
+Savepoint created.
+
+SQL> rollback to deleted;
+
+Rollback complete.
+
+SQL> -->7. Commit updates.
+SQL> commit;
+
+Commit complete.
+
+##Bonus Questions:
+1. Can rollback be done after commit?
+No rollback cannot be done after commit.
+Once commit is used or issued:
+1.changes are permanently saved in the database.
+2.rollback cannot undo those changes.
+**Commit saves changes permanent and rollbacks work only before commit.
+
+2. Difference between rollback and rollback to savepoint.
+**rollback:
+rollback cancels all uncommitted changes made in the current transactions.
+undoes every insert, upfdate and delete since last commit.
+Ends the transaction.
+Database returns to the last committed states.
+
+**Rollback to savepoint:
+ROLLBACK TO SAVEPOINT cancels changes only after a specific savepoint.
+Undoes partial changes
+Does NOT end the transaction
+Changes before the savepoint remain safe
+
+3. Why savepoints are used in real-time applications?
+Allow partial rollback without losing entire transaction
+1.Prevent data loss in multi-step transactions
+2.Improve error handling
+3.Used in banking, e-commerce, payroll systems
+4.Maintain transaction control
+
+
