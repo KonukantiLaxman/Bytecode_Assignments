@@ -17,8 +17,8 @@ print("sum of two values is:",n3)
 
 #2. Take a float number from the user and print.
 
-num=float(input("enter the number:"))
-print("Number is:",num)
+n=float(input("enter the number:"))
+print("Number is:",n)
 
 
 # In[5]:
