@@ -1,0 +1,315 @@
+SQL> desc employees;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                    NOT NULL NUMBER(38)
+ EMP_NAME                                           VARCHAR2(50)
+ DEPARTMENT_ID                                      NUMBER(38)
+ SALARY                                             NUMBER(38)
+ HIRE_DATE                                          DATE
+ MANAGER_ID                                         NUMBER(38)
+
+SQL> desc departments;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEPARTMENT_ID                             NOT NULL NUMBER(38)
+ DEPARTMENT_NAME                                    VARCHAR2(50)
+ LOCATION                                           VARCHAR2(50)
+
+SQL> set linesize 200;
+SQL> select * from employees;
+
+    EMP_ID EMP_NAME                                           DEPARTMENT_ID     SALARY HIRE_DATE MANAGER_ID                                                                                             
+---------- -------------------------------------------------- ------------- ---------- --------- ----------                                                                                             
+         1 Anil                                                          10      50000 10-JAN-22                                                                                                        
+         2 Sunil                                                         20      60000 15-MAR-21          1                                                                                             
+         3 Ravi                                                          10      45000 01-JUN-23          1                                                                                             
+         4 Priya                                                         30      70000 20-AUG-20          2                                                                                             
+         5 Kiran                                                         20      40000 12-NOV-22          2                                                                                             
+         6 Neha                                                                  35000 05-FEB-24                                                                                                        
+
+6 rows selected.
+
+SQL> select * from departments;
+
+no rows selected
+
+SQL> insert into departments
+  2  (department_id, department_name,location)
+  3  values(&department_id,'&department_name','&location');
+Enter value for department_id: 10
+Enter value for department_name: IT
+Enter value for location: Bangalore
+old   3: values(&department_id,'&department_name','&location')
+new   3: values(10,'IT','Bangalore')
+
+1 row created.
+
+SQL> /
+Enter value for department_id: 20
+Enter value for department_name: HR
+Enter value for location: Hyderabad
+old   3: values(&department_id,'&department_name','&location')
+new   3: values(20,'HR','Hyderabad')
+
+1 row created.
+
+SQL> /
+Enter value for department_id: 30
+Enter value for department_name: Finance
+Enter value for location: Mumbai
+old   3: values(&department_id,'&department_name','&location')
+new   3: values(30,'Finance','Mumbai')
+
+1 row created.
+
+SQL> /
+Enter value for department_id: 40
+Enter value for department_name: Marketing
+Enter value for location: Chennai
+old   3: values(&department_id,'&department_name','&location')
+new   3: values(40,'Marketing','Chennai')
+
+1 row created.
+
+SQL> select * from departments;
+
+DEPARTMENT_ID DEPARTMENT_NAME                                    LOCATION                                                                                                                               
+------------- -------------------------------------------------- --------------------------------------------------                                                                                     
+           10 IT                                                 Bangalore                                                                                                                              
+           20 HR                                                 Hyderabad                                                                                                                              
+           30 Finance                                            Mumbai                                                                                                                                 
+           40 Marketing                                          Chennai                                                                                                                                
+
+SQL> -->1. Display all employee details.
+SQL> select * from employees;
+
+    EMP_ID EMP_NAME                                           DEPARTMENT_ID     SALARY HIRE_DATE MANAGER_ID                                                                                             
+---------- -------------------------------------------------- ------------- ---------- --------- ----------                                                                                             
+         1 Anil                                                          10      50000 10-JAN-22                                                                                                        
+         2 Sunil                                                         20      60000 15-MAR-21          1                                                                                             
+         3 Ravi                                                          10      45000 01-JUN-23          1                                                                                             
+         4 Priya                                                         30      70000 20-AUG-20          2                                                                                             
+         5 Kiran                                                         20      40000 12-NOV-22          2                                                                                             
+         6 Neha                                                                  35000 05-FEB-24                                                                                                        
+
+6 rows selected.
+
+SQL> 	-->2. Find employees whose salary is greater than 45,000.
+SQL> select * from employees where salary>45000;
+
+    EMP_ID EMP_NAME                                           DEPARTMENT_ID     SALARY HIRE_DATE MANAGER_ID                                                                                             
+---------- -------------------------------------------------- ------------- ---------- --------- ----------                                                                                             
+         1 Anil                                                          10      50000 10-JAN-22                                                                                                        
+         2 Sunil                                                         20      60000 15-MAR-21          1                                                                                             
+         4 Priya                                                         30      70000 20-AUG-20          2                                                                                             
+
+SQL> -->3. Display employee name and department name using JOIN.
+SQL> select e.emp_name, d.department_name
+  2  from employees
+  3  inner join department d
+  4  on e.department_id=d.department_id;
+inner join department d
+           *
+ERROR at line 3:
+ORA-00942: table or view does not exist 
+
+
+SQL> select e_
+  2  
+SQL> 
+SQL> select e.emp_name, d.department_name
+  2  from employees
+  3  inner join department d
+  4  on e.department_id=d.department_id;
+inner join department d
+           *
+ERROR at line 3:
+ORA-00942: table or view does not exist 
+
+
+SQL> select e.emp_name, d.department_name
+  2  from employees e
+  3  inner join department d
+  4  on e.department_id=d.department_id;
+inner join department d
+           *
+ERROR at line 3:
+ORA-00942: table or view does not exist 
+
+
+SQL> select e.emp_name, d.department_name
+  2  from employees
+  3  inner join department d
+  4  
+SQL> select e.emp_name, d.department_name
+  2  from employees e
+  3  inner join departments d
+  4  on e.department_id=d.department_id;
+
+EMP_NAME                                           DEPARTMENT_NAME                                                                                                                                      
+-------------------------------------------------- --------------------------------------------------                                                                                                   
+Anil                                               IT                                                                                                                                                   
+Sunil                                              HR                                                                                                                                                   
+Ravi                                               IT                                                                                                                                                   
+Priya                                              Finance                                                                                                                                              
+Kiran                                              HR                                                                                                                                                   
+
+SQL> -->3. Display employee name and department name using JOIN.
+SQL> select e.emp_name, d.department_name
+  2  from employees e
+  3  inner join departments d
+  4  on e.department_id=d.department_id;
+
+EMP_NAME                                           DEPARTMENT_NAME                                                                                                                                      
+-------------------------------------------------- --------------------------------------------------                                                                                                   
+Anil                                               IT                                                                                                                                                   
+Sunil                                              HR                                                                                                                                                   
+Ravi                                               IT                                                                                                                                                   
+Priya                                              Finance                                                                                                                                              
+Kiran                                              HR                                                                                                                                                   
+
+SQL> -->4. Find total number of employees in each department.
+SQL> select d.department_name, count(e.emp_id) AS total_employees
+  2  from departments d
+  3  inner join employees e
+  4  on d.department_id=e.department_id
+  5  group by d.department_name;
+
+DEPARTMENT_NAME                                    TOTAL_EMPLOYEES                                                                                                                                      
+-------------------------------------------------- ---------------                                                                                                                                      
+IT                                                               2                                                                                                                                      
+HR                                                               2                                                                                                                                      
+Finance                                                          1                                                                                                                                      
+
+SQL> -->5. Find employees who do not belong to any department.
+SQL> select * from employees where department=null;
+select * from employees where department=null
+                              *
+ERROR at line 1:
+ORA-00904: "DEPARTMENT": invalid identifier 
+
+
+SQL> select * from employees where department_name=null;
+select * from employees where department_name=null
+                              *
+ERROR at line 1:
+ORA-00904: "DEPARTMENT_NAME": invalid identifier 
+
+
+SQL> select * from employees where department_id=null;
+
+no rows selected
+
+SQL> -->6. Display employees earning more than the average salary.
+SQL> select * from employees where salary>(select avg(salary) from employees);
+
+    EMP_ID EMP_NAME                                           DEPARTMENT_ID     SALARY HIRE_DATE MANAGER_ID                                                                                             
+---------- -------------------------------------------------- ------------- ---------- --------- ----------                                                                                             
+         2 Sunil                                                         20      60000 15-MAR-21          1                                                                                             
+         4 Priya                                                         30      70000 20-AUG-20          2                                                                                             
+
+SQL> -->
+SQL> -->7. Find the second highest salary.
+SQL> select max(salary) As second_highest_salary
+  2  where salary<
+  3  (select max(salary) from employees);
+where salary<
+*
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select max(salary) AS second_highest_salary from employees where salary< (select max(salary) from employees);
+
+SECOND_HIGHEST_SALARY                                                                                                                                                                                   
+---------------------                                                                                                                                                                                   
+                60000                                                                                                                                                                                   
+
+SQL> -->8. Display department names where no employees are working
+SQL> select d.department_name from departments d left join employees e on d.department_id=e.department_id where e.emp_id=null;
+
+no rows selected
+
+SQL> -->9. Find employees who earn more than their manager.
+SQL> select e.emp_name AS employee_name
+  2  e.salary AS employee_salary
+  3  m.emp_name AS manager_name
+  4  m.salary AS manager_salary
+  5  from employees e
+  6  join employees m
+  7  on e.manager_id=e.emp_id
+  8  where m.salary>e.salary;
+e.salary AS employee_salary
+*
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> -->9. Find employees who earn more than their manager.
+SQL> select e.emp_name AS employee_name
+  2  e.salary as employee salary
+  3  m.emp_name as manager_name
+  4  m.salary as manager_salary
+  5  from employees e
+  6  join employees m
+  7  on e.manager_id=e.emp_id
+  8  where e.salary>m.salary;
+e.salary as employee salary
+*
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> -->9. Find employees who earn more than their manager.
+SQL> select e.emp_name AS employee_name
+  2  e.salary AS employee_salary
+  3  m.emp_name AS manager_name
+  4  m.salary AS manager_salary
+  5  from employees e
+  6  join employees m
+  7  on e.manager_id=m.emp_
+  8  
+SQL> 
+SQL> select e.emp_name AS employee_name
+  2  e.salary AS employee_salary
+  3  m.emp_name AS manager_name
+  4  m.salary AS manager_salary
+  5  from employees e
+  6  join employees m
+  7  on e.manager_id=m.emp_id
+  8  where e.salary>m.salary;
+e.salary AS employee_salary
+*
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select e.emp_name AS employee_name,
+  2  e.salary AS employee_salary,
+  3  m.emp_name AS manager_name,
+  4  m.salary AS manager_salary
+  5  from employees e
+  6  join employees m
+  7  on e.manager_id=m.emp_id
+  8  where e.salary>m.salary;
+
+EMPLOYEE_NAME                                      EMPLOYEE_SALARY MANAGER_NAME                                       MANAGER_SALARY                                                                    
+-------------------------------------------------- --------------- -------------------------------------------------- --------------                                                                    
+Sunil                                                        60000 Anil                                                        50000                                                                    
+Priya                                                        70000 Sunil                                                       60000                                                                    
+
+SQL> -->10. Display the highest paid employee in each department
+SQL> select emp_name,salary,department_id from(select e.*, dense_rank() over (partition by department_id order by salary desc) as rnk from employees e);
+
+EMP_NAME                                               SALARY DEPARTMENT_ID                                                                                                                             
+-------------------------------------------------- ---------- -------------                                                                                                                             
+Anil                                                    50000            10                                                                                                                             
+Sunil                                                   60000            20                                                                                                                             
+Ravi                                                    45000            10                                                                                                                             
+Priya                                                   70000            30                                                                                                                             
+Kiran                                                   40000            20                                                                                                                             
+Neha                                                    35000                                                                                                                                           
+
+6 rows selected.
+
+SQL> spool off
