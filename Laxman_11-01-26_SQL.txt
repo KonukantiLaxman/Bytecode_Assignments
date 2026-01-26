@@ -48,7 +48,7 @@ SQL> select * from Employees;
          5 Smith                IT                        45000 ACTIVE                                                                                                                                  
 
 SQL> -->2. Display employees working in IT department.
-SQL> select * from Employees where department='IT';
+SQL> select * from Employees where department is 'IT';
 
     EMP_ID EMP_NAME             DEPARTMENT               SALARY STATUS                                                                                                                                  
 ---------- -------------------- -------------------- ---------- --------------------                                                                                                                    
@@ -64,7 +64,7 @@ ERROR at line 1:
 ORA-00933: SQL command not properly ended 
 
 
-SQL> update Employees set salary=salary+salary/100*10 where salary<40000;
+SQL> update Employees set salary=salary+salary*0.10 where salary<40000;
 
 3 rows updated.
 
